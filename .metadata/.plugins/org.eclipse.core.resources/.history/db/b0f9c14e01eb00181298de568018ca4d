@@ -1,0 +1,11 @@
+package model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class SaleInfo {
+	private class RetailPrice{
+		@SerializedName("amount")
+		@Expose
+	}
+}

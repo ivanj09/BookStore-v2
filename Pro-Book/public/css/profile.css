@@ -1,0 +1,71 @@
+/*Declare color tertiary*/
+:root {
+  --color-tertiary: rgb(4, 56, 78);
+}
+
+/*Container for profile*/
+.profile img {
+  float: left;
+}
+
+.profile .label {
+  float: left;
+  width: 40%;
+}
+
+.profile .value {
+  float: left;
+  width: 50%;
+  text-transform: none;
+}
+
+/*For user display picture*/
+.bg-display-pic {
+  background-color: var(--color-tertiary);
+}
+
+.top-profile {
+  text-align: center;
+  color: white;
+}
+
+.container .form-control > label {
+  text-align: left;
+}
+
+.secondary {
+  margin-left: 7%;
+}
+
+.pencil-icon {
+  content: url('../images/svg/pencil.svg');
+  display: inline;
+  float: right;
+  width: 24px;
+  height: 24px;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.pencil-icon:hover {
+  content: url('../images/svg/pencil-hover.svg');
+}
+
+.display-pic {
+  border-radius: 50%;
+  margin-left: 6%;
+}
+
+/*For edit profile*/
+.update-profile-label{
+  display: inline;
+  text-align: left;
+}
+
+.container .form-control>img{
+  float: left;
+  border: 2px solid rgba(0,0,0,1);
+  width: 20%;
+  height: 20%;
+  margin-right: 8%;
+}

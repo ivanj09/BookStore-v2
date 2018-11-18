@@ -1,0 +1,12 @@
+package utility;
+
+import java.net.URL;
+
+public class NetworkUtil {
+	public static String doRequest(String url) {
+		try {
+			URL url = new URL(url);
+			
+		}
+	}
+}

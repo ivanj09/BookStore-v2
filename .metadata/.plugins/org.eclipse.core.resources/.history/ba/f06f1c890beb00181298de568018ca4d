@@ -1,0 +1,15 @@
+package ws;
+
+import javax.jws.WebService;
+import java.util.ArrayList;
+
+@WebService(endpointInterface = "ws.RecommendationService")
+public final class RecommendationServiceImpl implements RecommendationService {
+
+	@Override
+	public ArrayList<Book> getRecommendedBooks(String[] category) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

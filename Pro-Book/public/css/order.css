@@ -1,0 +1,124 @@
+/*For book's image*/
+#book-image {
+  float: right;
+  text-align: center;
+}
+
+.container #book-image>img {
+  border: 2px solid rgba(0, 0, 0, 1);
+  width: 60%;
+  height: 60%;
+  margin-right: 8%;
+}
+
+/*order notif*/
+.order-notif{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 35vh;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5);
+}
+
+.order-notif-container{
+  position: relative;
+  background-color: white;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 35%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.order-notif-header {
+  padding: 8px;
+  padding-right: 16px;
+  padding-top: 0px;
+}
+
+.order-notif-body {
+  padding: 5%;
+  padding-bottom: 10%;
+}
+
+.order-notif-body img{
+  float: left;
+  width: 72px;
+  height: 72px;
+  padding-right: 24px;
+}
+
+.order-notif-body h1{
+  font-size: 110%;
+  font-family: 'Roboto Medium';
+}
+
+.order-notif-body p{
+  font-size: 80%;
+}
+
+.order-close-btn {
+  float: right;
+  color: dimgrey;
+  font-weight: bold;
+  font-size: 200%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.order-close-btn:hover,
+.order-close-btn:focus {
+  color: black;
+}
+
+/* review section  */
+img {
+  grid-area: img;
+}
+
+#uname {
+  grid-area: uname;
+  font-size: 90%;
+}
+
+#comment {
+  grid-area: comment;
+  font-size: 75%;
+  margin-top: -7%;
+  max-width: 350px;
+  word-break: break-all;
+}
+
+.rating {
+  grid-area: rating;
+}
+
+#rating-num {
+  grid-area: rating-num;
+  text-align: center;
+  margin-top: -5%;
+}
+
+.review {
+  display: grid;
+  grid-template-areas:
+    'img uname uname uname uname uname uname uname uname uname uname rating rating'
+    'img comment comment comment comment comment comment comment comment comment comment  rating-num rating-num'
+    'img comment comment comment comment comment comment comment comment comment comment  rating-num rating-num';
+  padding: 0px;
+  grid-gap: 24px;
+  width: 98%;
+}
+
+/*for 1440px*/
+@media screen and (min-width: 1440px) {
+  .order-section{
+    padding-bottom: 48px;
+  }
+}

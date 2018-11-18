@@ -1,0 +1,7 @@
+package model;
+
+public final class Book {
+	@SerializedName("id")
+	@Expose
+	private String id;
+}

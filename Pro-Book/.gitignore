@@ -1,0 +1,7 @@
+### Custom ###
+.env.php
+/public/images/books/
+/public/images/profiles/
+
+### VisualStudioCode ###
+.vscode/*

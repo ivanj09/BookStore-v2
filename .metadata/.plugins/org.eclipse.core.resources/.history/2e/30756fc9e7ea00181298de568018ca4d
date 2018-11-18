@@ -1,0 +1,15 @@
+package ws;
+
+import java.util.ArrayList;
+
+import model.Book;
+
+public final class RecommendationServiceImpl implements RecommendationService {
+
+	@Override
+	public ArrayList<Book> getRecommendedBooks(String[] category) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

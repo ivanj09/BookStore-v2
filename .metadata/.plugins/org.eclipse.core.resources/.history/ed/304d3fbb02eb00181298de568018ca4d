@@ -1,0 +1,22 @@
+package ws;
+
+import java.util.List;
+
+import javax.jws.WebService;
+
+import model.Book;
+
+@WebService(endpointInterface = "ws.SearchService")
+public final class SearchServiceImpl implements SearchService{
+
+	@Override
+	public List<Book> searchBooksByKeyword(String title) {
+		return null;
+	}
+
+	@Override
+	public Book getBookDetails(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
