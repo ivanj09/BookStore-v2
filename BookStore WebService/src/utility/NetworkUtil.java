@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 public class NetworkUtil {
 	public static String doRequest(URI uri) throws Exception {
+		//Experimental testing -> need to be delete soon..
 		System.out.println(uri.toString());
 		
 		URL url = new URL(uri.toString());

@@ -14,7 +14,6 @@ public final class SearchServiceImpl implements SearchService{
 
 	@Override
 	public String getBookDetails(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return GoogleBooksAPI.getBookDetails(id);
 	}
 }

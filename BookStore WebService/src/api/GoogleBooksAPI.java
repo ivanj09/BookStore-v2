@@ -2,13 +2,14 @@ package api;
 
 import utility.NetworkUtil;
 
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.ArrayList;
 
 import org.apache.http.client.utils.URIBuilder;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import model.Book;
 import model.BookResponse;
@@ -32,22 +33,51 @@ public class GoogleBooksAPI {
 				.setParameter(KEY_PARAM, API_KEY).build();
 			
 			//Get response
-			String data =  NetworkUtil.doRequest(uri).toString();
+			String response =  NetworkUtil.doRequest(uri).toString();
 			
 			//Mapping from json to data class
 			Gson gson = new Gson();
-			BookResponse bookResponse = gson.fromJson(data,  BookResponse.class);
+			BookResponse bookResponse = gson.fromJson(response,  BookResponse.class);
+			
+			ArrayList<Book> books = bookResponse.getBooks();
 			
 			//Experimental testing -> need to be delete soon..
-			ArrayList<Book> books = bookResponse.getBooks();
 			for (Book book : books) {
 				System.out.println(book.getVolumeInfo().getTitle());
 			}
 			
-			return data;
+			//Remove unused data
+			Type listBookType = new TypeToken<ArrayList<Book>>() {}.getType();
+			
+			return gson.toJson(books, listBookType);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println("error!!");
+			return null;
+		}
+	}
+	
+	public static String getBookDetails(String id) {
+		URI uri;
+		try {
+			uri = new URIBuilder()
+					.setScheme(SCHEME)
+					.setHost(BASE_URL)
+					.setPath(SEARCH_BOOK_BY_VOLUME + "/" + id)
+					.addParameter(KEY_PARAM, API_KEY)
+					.build();
+			
+			//Get response
+			String response = NetworkUtil.doRequest(uri);
+			
+			//Mapping from json to data class
+			Gson gson = new Gson();
+			Book book = gson.fromJson(response, Book.class);
+			
+			Type bookType = new TypeToken<Book>() {}.getType();
+			
+			return gson.toJson(book, bookType);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return null;
 		}
 	}
