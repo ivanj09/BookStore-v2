@@ -1,6 +1,0 @@
-package model;
-
-public class BookResponse {
-	@SerializedName("")
-	public void set() {}
-}

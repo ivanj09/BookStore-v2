@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+/home/mark/Documents/File Semester 5/Web Development/BookStore - Tugas 2/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-838928827.index
-2913254803.index
-1621898904.index
-1300882913.index
-921010495.index
-1032915619.index

@@ -1,9 +1,0 @@
-package utility;
-
-import java.net.*;
-
-public class NetworkUtil {
-	public static String doRequest(String url) {
-		URL url
-	}
-}

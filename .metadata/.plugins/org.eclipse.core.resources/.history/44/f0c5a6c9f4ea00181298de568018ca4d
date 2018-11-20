@@ -1,7 +1,0 @@
-package utility;
-
-public class NetworkUtil {
-	public static String doRequest(String url) {
-		
-	}
-}

@@ -12,19 +12,11 @@ public class Book {
 	@Expose
 	private VolumeInfo volInfo;
 	
-	@SerializedName("saleInfo")
-	@Expose
-	private SaleInfo saleInfo;
-	
 	public String getId() {
 		return id;
 	}
 	
 	public VolumeInfo getVolumeInfo() {
 		return volInfo;
-	}
-	
-	public SaleInfo getSaleInfo() {
-		return saleInfo;
 	}
 }
