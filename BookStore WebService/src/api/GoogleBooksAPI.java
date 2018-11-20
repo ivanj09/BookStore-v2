@@ -21,6 +21,7 @@ public class GoogleBooksAPI {
 	private final static String BASE_URL = "www.googleapis.com";
 	private final static String SEARCH_BOOK_BY_VOLUME = "books/v1/volumes";
 	private final static String QUERY_PARAM = "q";
+	private final static String SEARCH_BY_CATEGORY = "subject:";
 	private final static String KEY_PARAM = "key";
 	
 	public static String getJsonBooks(String title) {
@@ -126,6 +127,28 @@ public class GoogleBooksAPI {
 			book.getVolumeInfo().setQuantity(quantity);
 			
 			return book;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	public static Book getRandomBookByCategory(String category) {
+		URI uri;
+		try {
+			uri = new URIBuilder()
+				.setScheme(SCHEME)
+				.setHost(BASE_URL)
+				.setPath(SEARCH_BOOK_BY_VOLUME)
+				.setParameter(QUERY_PARAM, SEARCH_BY_CATEGORY + category)
+				.setParameter(KEY_PARAM, API_KEY).build();
+			
+			//Get response
+			String response = NetworkUtil.doRequest(uri);
+			
+			//Mapping from json to data class
+			Gson gson = new Gson();
+			return gson.fromJson(response, Book.class);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;

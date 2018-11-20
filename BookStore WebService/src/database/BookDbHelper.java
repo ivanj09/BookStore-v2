@@ -100,6 +100,32 @@ public class BookDbHelper {
 		
 		return rs.next()? rs.getInt("quantity"):0;
 	}
+	
+	public String getTopBookWhereCategory(String category) throws SQLException {
+		Connection conn = getConnectionInstance();
+		PreparedStatement prepareStmt = null;
+		
+		//SQL statement
+		String sql = "SELECT book_id, SUM(quantity) as total"
+				+ " FROM " + BookDbHelper.ORDER_TABLE
+				+ " WHERE category = \"" + category + "\""
+				+ " GROUP BY book_id"
+				+ " ORDER BY total DESC"
+				+ " LIMIT 1";
+		
+		//Set prepared stmt
+		prepareStmt = conn.prepareStatement(sql);
+		
+		//Get result 
+		ResultSet rs = prepareStmt.executeQuery();
+		
+		//If exist
+		if (rs.next()) {
+			return rs.getString("book_id");
+		}
+		
+		return null;
+	}
 
 	public void insertOrder(int i, String id, String category, int quantity, Date sqlDate) throws SQLException {
 		Connection conn = getConnectionInstance();
