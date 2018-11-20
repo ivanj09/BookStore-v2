@@ -5,6 +5,7 @@ import utility.NetworkUtil;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.apache.http.client.utils.URIBuilder;
 
@@ -148,7 +149,11 @@ public class GoogleBooksAPI {
 			
 			//Mapping from json to data class
 			Gson gson = new Gson();
-			return gson.fromJson(response, Book.class);
+			BookResponse bookResponse = gson.fromJson(response,  BookResponse.class);
+			ArrayList<Book> books = bookResponse.getBooks();
+			
+			//Get random book from books
+			return books.get(new Random().nextInt(books.size()));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
