@@ -50,13 +50,16 @@
               </div>
               <div class="d-flex flex-column">
                 <h2 class="secondary m-0">{{book.volumeInfo.title}}</h2>
-                <p class="m-0"><b>{{book.volumeInfo.authors.join(", ")}} - {{book.volumeInfo.averageRating}} / 5.0</b></p>
+                <p class="m-0"><b>{{book.volumeInfo.authors.join(", ")}} - {{checkAverageRating(book.volumeInfo)}}</b></p>
                 <p class="m-0 font-weight-light">{{book.volumeInfo.description}}</p>
               </div>
             </div>
-            <div class="d-flex justify-content-end mb-32">
-              <a class="btn btn-primary">Detail</a>
-            </div>
+            <form action="/index.php/book" method="get">
+              <div class="d-flex justify-content-end mb-32">
+                <input type="hidden" name="id" value="{{book.id}}" />
+                <input type="submit" class="btn btn-primary" value="Detail" />
+              </div>
+            </form>
           </div>
         </div>
   		</div>

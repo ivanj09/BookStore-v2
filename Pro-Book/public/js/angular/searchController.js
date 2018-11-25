@@ -34,4 +34,13 @@ searchApp.controller('searchController', function($scope, $http){
       })
     }
   }
+
+  $scope.checkAverageRating = function(jsonObj) {
+		if(jsonObj.averageRating > 0) {
+			return jsonObj.averageRating + " / 5.0";
+		}
+		else {
+			return "No rating available..";
+		}
+	}
 })

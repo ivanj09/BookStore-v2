@@ -11,5 +11,5 @@ import javax.xml.bind.annotation.XmlElement;
 @SOAPBinding(style = Style.RPC)
 public interface RecommendationService {
 	@WebMethod
-	String getRecommendedBooks(@WebParam(name = "categories") @XmlElement(required = true) String[] categories);
+	String getRecommendedBooks(@WebParam(name = "categories") @XmlElement(required = true) String categories);
 }

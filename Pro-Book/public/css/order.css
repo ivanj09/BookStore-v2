@@ -84,7 +84,7 @@ img {
 
 #uname {
   grid-area: uname;
-  font-size: 90%;
+  font-size: 95%;
 }
 
 #comment {
@@ -109,8 +109,8 @@ img {
   display: grid;
   grid-template-areas:
     'img uname uname uname uname uname uname uname uname uname uname rating rating'
-    'img comment comment comment comment comment comment comment comment comment comment  rating-num rating-num'
-    'img comment comment comment comment comment comment comment comment comment comment  rating-num rating-num';
+    'img comment comment comment comment comment comment comment comment comment comment rating-num rating-num'
+    'img comment comment comment comment comment comment comment comment comment comment rating-num rating-num';
   padding: 0px;
   grid-gap: 24px;
   width: 98%;

@@ -12,24 +12,29 @@ import model.Book;
 import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 @WebService(endpointInterface = "ws.RecommendationService")
 public final class RecommendationServiceImpl implements RecommendationService {
 
 	@Override
-	public String getRecommendedBooks(String[] categories) {
+	public String getRecommendedBooks(String categories) {
 		//Get connection instance
 		BookDbHelper db = new BookDbHelper();
 		Book book;
 		
 		ArrayList<Book> books = new ArrayList<Book>();
-		for (String category: categories) {
+		String[] categoriesStr = categories.split(" / ");
+		
+		for (String category: categoriesStr) {
 			String id = null;
 			try {
 				id = db.getTopBookWhereCategory(category);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
+			System.out.println(id);
 			
 			if (id == null) {
 				//Get random book with given category

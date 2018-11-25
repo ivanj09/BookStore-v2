@@ -15,7 +15,7 @@ Route::get('home', 'HomeController@index');
 Route::get('search', 'HomeController@search');
 
 /** OrderController */
-Route::get('order', 'OrderController@create');
+Route::get('book', 'SoapServiceController@getBookDetails');
 Route::get('history', 'OrderController@index');
 
 /** ReviewController */
