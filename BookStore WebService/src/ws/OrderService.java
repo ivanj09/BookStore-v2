@@ -11,5 +11,5 @@ import javax.xml.bind.annotation.XmlElement;
 @SOAPBinding(style = Style.RPC)
 public interface OrderService {
 	@WebMethod
-	String order(@WebParam(name = "id") @XmlElement(required = true) String id, @WebParam(name = "quantity") @XmlElement(required = true) int quantity, @WebParam(name = "accountNumber") @XmlElement(required = true) int accountNumber);
+	String order (@WebParam(name = "userId") @XmlElement(required = true) int userId, @WebParam(name = "bookId") @XmlElement(required = true) String bookId, @WebParam(name = "quantity") @XmlElement(required = true) int quantity, @WebParam(name = "accountNumber") @XmlElement(required = true) int accountNumber);
 }

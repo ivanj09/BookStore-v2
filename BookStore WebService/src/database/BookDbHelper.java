@@ -15,6 +15,7 @@ public class BookDbHelper {
 	private final static String PASS = "Allofthings1";
 	private final static String ORDER_TABLE = "orders";
 	private final static String BOOK_TABLE = "books";
+	private final static String REVIEW_TABLE = "reviews";
 	private static Connection conn;
 	
 	private static Connection getConnectionInstance() {
@@ -54,6 +55,16 @@ public class BookDbHelper {
 	    stmt.execute(sqlCreate);
 	}
 	
+//	private static void createReviewTableIfNotExist() throws SQLException {
+//		String sqlCreate = "CREATE TABLE IF NOT EXISTS " + REVIEW_TABLE
+//	            + "  (id				int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,"
+//	            + "   book_id			varchar(255),"
+//	            + "   rating			char(1),"
+//	            + "	  comment			varchar(255))";
+//		
+//		Statement stmt = conn.createStatement();
+//		stmt.execute(sqlCreate);
+//	}
 	private static void createBookTableIfNotExist() throws SQLException {
 	    String sqlCreate = "CREATE TABLE IF NOT EXISTS " + BOOK_TABLE
 	            + "  (id				int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,"

@@ -13,7 +13,7 @@ import model.Book;
 public final class OrderServiceImpl implements OrderService {
 
 	@Override
-	public String order(String id, int quantity, int accountNumber) {
+	public String order(int userId, String bookId, int quantity, int accountNumber) {
 		boolean success;
 		
 		/** Check user's balance, if greater or equal than price of ordered books then buy it..
@@ -26,7 +26,7 @@ public final class OrderServiceImpl implements OrderService {
 			Date date = new Date();
 			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 			
-			Book book = GoogleBooksAPI.getBookDetail(id);
+			Book book = GoogleBooksAPI.getBookDetail(bookId);
 			
 			//Connect to db
 			BookDbHelper db = new BookDbHelper();
@@ -35,7 +35,7 @@ public final class OrderServiceImpl implements OrderService {
 			String[] categories = book.getVolumeInfo().getCategories();
 			for (String category: categories) {
 				try {
-					db.insertOrder(1, id, category, quantity, sqlDate);
+					db.insertOrder(userId, bookId, category, quantity, sqlDate);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

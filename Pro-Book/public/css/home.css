@@ -45,15 +45,17 @@ body, html {
 }
 
 .image-overlap {
-  width: 179px;
-  height: 144px;
+  min-width: 128px;
+  min-height: 156px;
+  max-width: 128px;
+  max-height: 156px;
   overflow: hidden;
   border: 1px black solid;
 }
 
-.image-overlap img {
-  width: auto;
-  height: 146px;
-  max-width: 146px;
-  max-height: 146px;
+.image-overlap {
+  min-width: 128px;
+  min-height: 156px;
+  max-width: 128px;
+  max-height: 156px;
 }

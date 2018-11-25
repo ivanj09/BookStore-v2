@@ -1,9 +1,11 @@
 <?php
 require_once('./libs/route.php');
+require_once('./libs/session.php');
 
 /** Auth */
 Route::get('login', 'Auth@login');
 Route::post('login', 'Auth@handleLogin');
+Route::post('loginbygoogle', 'Auth@handleLoginByGoogle');
 Route::post('logout', 'Auth@logout');
 Route::get('register', 'Auth@register');
 Route::post('register', 'Auth@handleRegister');
@@ -22,7 +24,10 @@ Route::post('review', 'ReviewController@store');
 
 /** UserController */
 Route::get('profile', 'UserController@profile');
-Route::get('profile/edit', 'UserController@edit');
+Session::start();
+if (!Session::exist('isloginbygoogle')){
+  Route::get('profile/edit', 'UserController@edit');
+}
 Route::put('profile/edit', 'UserController@update');
 
 /** API */
@@ -31,4 +36,4 @@ Route::get('apis/validate-email', 'ValidateEmail');
 Route::get('apis/validate-username', 'ValidateUsername');
 
 //Experimental
-Route::get('testservice', 'SoapServiceController');
+Route::post('books', 'SoapServiceController@searchBooks');

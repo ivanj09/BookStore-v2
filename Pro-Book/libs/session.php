@@ -4,16 +4,17 @@ class Session
 {
   /**
    * Start session.
-   * 
+   *
    */
   public static function start()
   {
+    session_id(999);
     @session_start();
   }
-  
+
   /**
    * Set session by key-value.
-   * 
+   *
    * @param string session key.
    * @param string session value.
    */
@@ -24,7 +25,7 @@ class Session
 
   /**
    * Unset session by key.
-   * 
+   *
    * @param string session key.
    */
   public static function unset($key)
@@ -36,7 +37,7 @@ class Session
 
   /**
    * Check whether session key is exist.
-   * 
+   *
    * @param string session key.
    * @return boolean true if exist, otherwise false.
    */
@@ -44,10 +45,10 @@ class Session
   {
     return (self::get($key) !== null);
   }
-  
+
   /**
    * Get session by key.
-   * 
+   *
    * @param string session key.
    * @return string session value.
    * @return null if session does not exist.
@@ -57,13 +58,13 @@ class Session
     if (isset($_SESSION[$key])) {
       return $_SESSION[$key];
     }
-    
+
     return null;
   }
-  
+
   /**
    * Destroy session.
-   * 
+   *
    */
   public static function destroy()
   {

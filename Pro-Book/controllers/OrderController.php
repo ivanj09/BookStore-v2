@@ -25,12 +25,29 @@ class OrderController extends Controller
    */
   public function index() {
     $order = new Order();
-    $orders = $order->getByUser(Auth::user()['id']);
 
-    return $this->view('history.php', [
-      'orders' => $orders,
-      'username' => Auth::user()['username'],
-    ]);
+    if (Session::exist('isloginbygoogle')){
+      $isSignedIn = Session::get('isloginbygoogle');
+      if ($isSignedIn){
+        $orders = $order->getByUser(Session::get('google')['username']);
+
+        return $this->view('history.php', [
+          'username' => Session::get('google')['username'],
+          'orders' => $orders
+        ]);
+      } else {
+        return $this->redirect('/index.php/login', [
+          'message' => 'Problem encountered'
+        ]);
+      }
+    } else {
+      $orders = $order->getByUser(Auth::user()['id']);
+
+      return $this->view('history.php', [
+        'orders' => $orders,
+        'username' => Auth::user()['username'],
+      ]);
+    }
   }
 
   /**
@@ -43,6 +60,21 @@ class OrderController extends Controller
 
     $reviews = new Review();
     $reviews = $reviews->getByBookId($request['book-id']);
+
+    if (Session::exist('isloginbygoogle')){
+      $isSignedIn = Session::get('isloginbygoogle');
+      if ($isSignedIn){
+        return $this->view('order.php', [
+          'book' => $book,
+          'reviews' => $reviews,
+          'user' => Session::get('google'),
+        ]);
+      } else {
+        return $this->redirect('/index.php/login', [
+          'message' => 'Problem encountered'
+        ]);
+      }
+    }
 
     return $this->view('order.php', [
       'book' => $book,

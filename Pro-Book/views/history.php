@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <title>
-		Home
+		History
   </title>
   <link rel="stylesheet" href="/public/css/main.css" />
   <link rel="stylesheet" href="/public/css/home.css" />

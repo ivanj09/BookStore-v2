@@ -8,6 +8,9 @@
   <title>
 		Home
   </title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+  <script src="/public/js/angular/searchApp.js"></script>
+	<script src="/public/js/angular/searchController.js"></script>
   <link rel="stylesheet" href="/public/css/main.css" />
   <link rel="stylesheet" href="/public/css/home.css" />
   <script src="/public/js/validation.js"></script>
@@ -21,19 +24,43 @@
 			<a href="/index.php/history" class="flex-fill text-center bg-dark-primary white py-16">History</a>
 			<a href="/index.php/profile" class="flex-fill text-center bg-dark-primary white py-16">Profile</a>
 		</div>
-		<div class="content p-24">
-      <h1 class="secondary m-0">Search Book</h1>
-      <form name="searchForm" action="/index.php/search" method="GET" onsubmit="event.preventDefault(); return validate();">
+    <div id="search-page" ng-app="searchApp" ng-controller="searchController">
+      <div class="content p-24">
+        <h1 class="secondary m-0">Search Book</h1>
         <div class="d-flex">
-          <input type="text" placeholder="Input search terms..." name="keyword" class="flex-fill mt-24 mb-16">
+          <input type="text" placeholder="Input search terms..." name="search_bar" class="flex-fill mt-24 mb-16" ng-model="formData.search_bar">
         </div>
         <div class="d-flex justify-content-end">
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" ng-click="search()">
             Search
           </button>
         </div>
-      </form>
-		</div>
+        <h3 id="loading_text"></h3>
+  		</div>
+      <div id="search_result" class="content p-24" style="display: none;">
+  			<div class="d-flex justify-content-between align-items-end mb-24">
+  				<h1 class="secondary m-0">Search Result</h1>
+  				<p class="nowrap m-0">Found <u><span><b id="count"></b></span></u> result(s)</p>
+  			</div>
+        <div id="search_result_page">
+          <div ng-repeat="book in book_list">
+            <div class="d-flex flex-row">
+              <div class="image-overlap d-flex justify-content-center mr-24">
+                <img src="{{book.volumeInfo.imageLinks.thumbnail}}" alt="{{book.volumeInfo.title}}">
+              </div>
+              <div class="d-flex flex-column">
+                <h2 class="secondary m-0">{{book.volumeInfo.title}}</h2>
+                <p class="m-0"><b>{{book.volumeInfo.authors.join(", ")}} - {{book.volumeInfo.averageRating}} / 5.0</b></p>
+                <p class="m-0 font-weight-light">{{book.volumeInfo.description}}</p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end mb-32">
+              <a class="btn btn-primary">Detail</a>
+            </div>
+          </div>
+        </div>
+  		</div>
+    </div>
 	</div>
 	<script type="text/javascript">
     function validate() {

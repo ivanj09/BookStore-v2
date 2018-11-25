@@ -22,6 +22,19 @@ class UserController extends Controller
    * @return view profile.php.
    */
   public function profile(){
+    if (Session::exist('isloginbygoogle')){
+      $isSignedIn = Session::get('isloginbygoogle');
+      if ($isSignedIn){
+        return $this->view('profile.php', [
+          'user' => Session::get('google')
+        ]);
+      } else {
+        return $this->redirect('/index.php/login', [
+          'message' => 'Problem encountered'
+        ]);
+      }
+    }
+
     $user = Auth::user();
 
     return $this->view('profile.php', [

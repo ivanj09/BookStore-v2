@@ -1,8 +1,8 @@
 <html>
   <head>
     <title>Login</title>
-    <link rel="stylesheet" href="/public/css/main.css" />
-    <script src="/public/js/validation.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="515763841802-0fa4ri4h0is7fd90376493b3lu6desao.apps.googleusercontent.com">
   </head>
 
   <body>
@@ -33,11 +33,34 @@
           <a href="/index.php/register">Don't have an account?</a><br />
         </div>
         <button type="submit" class="mb-16 button-secondary">Login</button>
+        <div class="form-control pb-16" style="width: 22.5%; margin: auto;">
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
       </form>
     </div>
   </body>
 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
   <script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+    function onSignIn(user){
+      var profile = user.getBasicProfile();
+      jQuery.ajax({
+        type: "POST",
+        url: '/index.php/loginbygoogle',
+        data: {'username': profile.getId(), 'name': profile.getName(), 'image_path': profile.getImageUrl(), 'email': profile.getEmail()}
+      })
+
+      window.location.replace("/index.php/home");
+    }
     function validate() {
       const validity = (
         validation.required([
@@ -53,4 +76,6 @@
       }
     }
   </script>
+  <link rel="stylesheet" href="/public/css/main.css" />
+  <script src="/public/js/validation.js"></script>
 </html>

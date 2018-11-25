@@ -36,10 +36,20 @@
 		</div>
   </div>
   <div class="top-profile bg-display-pic container w-60 pt-32 pb-32">
-    <a href="/index.php/profile/edit">
-      <img class="pencil-icon pr-24"/>
-    </a>
-    <img class="display-pic" src="<?php echo $user['image_path']; ?>" width="128px" height="128px" />
+    <?php
+      if (!Session::exist('google')){
+    ?>
+        <a href="/index.php/profile/edit">
+          <img class="pencil-icon pr-24"/>
+        </a>
+        <img class="display-pic ml-48" src="<?php echo $user['image_path']; ?>" width="128px" height="128px" />
+    <?php
+      } else {
+    ?>
+        <img class="display-pic" src="<?php echo $user['image_path']; ?>" width="128px" height="128px" />
+    <?php
+      }
+    ?>
     <h1><?php echo $user['name']; ?></h1>
   </div>
   <div class="container w-60 pb-48">
