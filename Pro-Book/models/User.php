@@ -128,4 +128,27 @@ class User extends Model
 
     return null;
   }
+
+  /**
+   * Get user by card number.
+   *
+   * @param string card number.
+   * @return object User
+   */
+  public function getByCardNumber($card_number)
+  {
+    $card_number = $this->toSqlString($card_number);
+
+    $query = "SELECT * FROM $this->table WHERE card_number = $card_number";
+    $stmt = $this->db->prepare($query);
+
+    if ($stmt->execute()) {
+      $stmt = $stmt->get_result();
+      if ($stmt->num_rows > 0) {
+        return $this->toArray($stmt)[0];
+      }
+    }
+
+    return null;
+  }
 }
